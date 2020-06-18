@@ -1,0 +1,15 @@
+<label for="nova-tarefa">Digite a sua nova tarefa: </label>
+<input id="nova-tarefa"
+       type="text"
+       [(ngModel)]="novaTarefa"
+       (keyup.enter)="adicionar()">
+<button (click)="adicionar()">Adicionar</button>
+
+<hr>
+
+<h1>Lista de Tarefas</h1>
+<ol>
+    <li *ngFor="let t of tarefas">
+        {{t}}
+    </li>
+</ol>
