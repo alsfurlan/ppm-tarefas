@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Tarefa } from './tarefa.interface';
+import { TarefaService } from './tarefa.service';
 
 @Component({
   selector: 'app-tarefas',
@@ -8,15 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class TarefasComponent implements OnInit {
 
   novaTarefa: string;
-  tarefas: string[] = [];
+  tarefas: Tarefa[];
 
-  constructor() { }
+  constructor(
+    private tarefaService: TarefaService
+  ) { 
+    this.tarefas = this.tarefaService.getTarefas();
+  }
 
   ngOnInit(): void {
   }
 
   adicionar() {
-    this.tarefas.push(this.novaTarefa);
+    const tarefa = { descricao: this.novaTarefa };
+    this.tarefaService.adicionar(tarefa);
     this.novaTarefa = '';
   }
 
